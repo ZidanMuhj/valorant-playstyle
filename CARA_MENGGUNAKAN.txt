@@ -1,0 +1,10 @@
+CARA MENGGUNAKAN SISTEM KUISIONER VALORANT
+======================================================================
+
+1. Buka file: Kuisioner Gaya Bermain VALORANT.html
+2. Isi kuisioner (minimal 10-20 responden untuk hasil terbaik)
+3. Klik tombol 'Download CSV'
+4. Simpan file dengan nama: valorant_questionnaire_data.csv
+5. Letakkan di folder yang sama dengan script Python
+6. Jalankan: python process_questionnaire.py
+7. Data siap digunakan untuk training model ML!

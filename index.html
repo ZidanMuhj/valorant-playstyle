@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuisioner Gaya Bermain VALORANT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff4655 0%, #ff1744 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        .form-content {
+            padding: 40px;
+        }
+
+        .form-section {
+            margin-bottom: 35px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #ff4655;
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #ff4655;
+            box-shadow: 0 0 0 3px rgba(255, 70, 85, 0.1);
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .radio-option input[type="radio"] {
+            display: none;
+        }
+
+        .radio-option label {
+            display: block;
+            padding: 12px 20px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            margin-bottom: 0;
+        }
+
+        .radio-option input[type="radio"]:checked + label {
+            background: #ff4655;
+            color: white;
+            border-color: #ff4655;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 70, 85, 0.3);
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-option input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .checkbox-option label {
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff4655 0%, #ff1744 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 70, 85, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 70, 85, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .response-count {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        .export-section {
+            margin-top: 30px;
+            padding: 25px;
+            background: #fff3e0;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .export-btn {
+            padding: 12px 30px;
+            background: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s;
+        }
+
+        .export-btn:hover {
+            background: #f57c00;
+            transform: translateY(-2px);
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196f3;
+        }
+
+        .info-box p {
+            color: #1565c0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .form-content {
+                padding: 20px;
+            }
+
+            .radio-option {
+                min-width: 100%;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 Kuisioner Gaya Bermain VALORANT</h1>
+            <p>Sistem Rekomendasi Agent Berdasarkan Machine Learning</p>
+        </div>
+
+        <div class="form-content">
+            <div class="info-box">
+                <p><strong>📋 Petunjuk:</strong> Isi kuisioner ini dengan jujur berdasarkan pengalaman bermain VALORANT Anda. Data akan digunakan untuk melatih model machine learning yang merekomendasikan agent yang sesuai dengan gaya bermain Anda.</p>
+            </div>
+
+            <form id="valorantForm">
+                <!-- Informasi Dasar -->
+                <div class="form-section">
+                    <div class="section-title">📝 Informasi Dasar</div>
+                    
+                    <div class="form-group">
+                        <label>Nama/Username (Opsional)</label>
+                        <input type="text" id="username" placeholder="Contoh: PlayerOne#1234">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Rank Saat Ini</label>
+                        <select id="rank" required>
+                            <option value="">-- Pilih Rank --</option>
+                            <option value="Iron">Iron</option>
+                            <option value="Bronze">Bronze</option>
+                            <option value="Silver">Silver</option>
+                            <option value="Gold">Gold</option>
+                            <option value="Platinum">Platinum</option>
+                            <option value="Diamond">Diamond</option>
+                            <option value="Ascendant">Ascendant</option>
+                            <option value="Immortal">Immortal</option>
+                            <option value="Radiant">Radiant</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Berapa lama Anda bermain VALORANT?</label>
+                        <select id="experience" required>
+                            <option value="">-- Pilih Durasi --</option>
+                            <option value="< 3 bulan">Kurang dari 3 bulan</option>
+                            <option value="3-6 bulan">3-6 bulan</option>
+                            <option value="6-12 bulan">6-12 bulan</option>
+                            <option value="1-2 tahun">1-2 tahun</option>
+                            <option value="> 2 tahun">Lebih dari 2 tahun</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Statistik Permainan -->
+                <div class="form-section">
+                    <div class="section-title">📊 Statistik Permainan (Rata-rata per Match)</div>
+                    
+                    <div class="form-group">
+                        <label>Average Kills per Match</label>
+                        <input type="number" id="avg_kills" min="0" max="50" step="0.1" placeholder="Contoh: 15.5" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Average Deaths per Match</label>
+                        <input type="number" id="avg_deaths" min="1" max="50" step="0.1" placeholder="Contoh: 12.3" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Average Assists per Match</label>
+                        <input type="number" id="avg_assists" min="0" max="30" step="0.1" placeholder="Contoh: 7.2" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Average First Bloods per Match</label>
+                        <input type="number" id="avg_first_bloods" min="0" max="10" step="0.1" placeholder="Contoh: 1.8" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Average Combat Score (ACS)</label>
+                        <input type="number" id="avg_combat_score" min="0" max="500" step="1" placeholder="Contoh: 220" required>
+                    </div>
+                </div>
+
+                <!-- Gaya Bermain -->
+                <div class="form-section">
+                    <div class="section-title">🎯 Gaya Bermain</div>
+                    
+                    <div class="form-group">
+                        <label>Bagaimana Anda menggambarkan gaya bermain Anda?</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="style_aggressive" name="playstyle" value="Agresif" required>
+                                <label for="style_aggressive">⚔️ Agresif</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="style_tactical" name="playstyle" value="Taktis">
+                                <label for="style_tactical">🧠 Taktis</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="style_supportive" name="playstyle" value="Supportif">
+                                <label for="style_supportive">🤝 Supportif</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="style_passive" name="playstyle" value="Pasif">
+                                <label for="style_passive">🛡️ Pasif</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Peran yang paling sering Anda mainkan</label>
+                        <select id="preferred_role" required>
+                            <option value="">-- Pilih Peran --</option>
+                            <option value="Duelist">Duelist (Entry Fragger)</option>
+                            <option value="Controller">Controller (Smoke/Area Denial)</option>
+                            <option value="Initiator">Initiator (Info Gatherer)</option>
+                            <option value="Sentinel">Sentinel (Defender/Anchor)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Posisi yang Anda sukai saat bermain</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="pos_entry" name="position" value="Entry" required>
+                                <label for="pos_entry">🚀 Entry (Masuk Duluan)</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="pos_support" name="position" value="Support">
+                                <label for="pos_support">💚 Support/Follow-up</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="pos_lurk" name="position" value="Lurk">
+                                <label for="pos_lurk">🎭 Lurker</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="pos_anchor" name="position" value="Anchor">
+                                <label for="pos_anchor">⚓ Anchor/Hold Site</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preferensi Agent -->
+                <div class="form-section">
+                    <div class="section-title">👤 Preferensi Agent</div>
+                    
+                    <div class="form-group">
+                        <label>Agent Favorit Utama (yang paling sering dimainkan)</label>
+                        <select id="favorite_agent" required>
+                            <option value="">-- Pilih Agent --</option>
+                            <optgroup label="Duelist">
+                                <option value="Jett">Jett</option>
+                                <option value="Raze">Raze</option>
+                                <option value="Reyna">Reyna</option>
+                                <option value="Phoenix">Phoenix</option>
+                                <option value="Yoru">Yoru</option>
+                                <option value="Neon">Neon</option>
+                            </optgroup>
+                            <optgroup label="Controller">
+                                <option value="Brimstone">Brimstone</option>
+                                <option value="Viper">Viper</option>
+                                <option value="Omen">Omen</option>
+                                <option value="Astra">Astra</option>
+                                <option value="Harbor">Harbor</option>
+                            </optgroup>
+                            <optgroup label="Initiator">
+                                <option value="Sova">Sova</option>
+                                <option value="Breach">Breach</option>
+                                <option value="Skye">Skye</option>
+                                <option value="KAY/O">KAY/O</option>
+                                <option value="Fade">Fade</option>
+                                <option value="Gekko">Gekko</option>
+                            </optgroup>
+                            <optgroup label="Sentinel">
+                                <option value="Sage">Sage</option>
+                                <option value="Cypher">Cypher</option>
+                                <option value="Killjoy">Killjoy</option>
+                                <option value="Chamber">Chamber</option>
+                                <option value="Deadlock">Deadlock</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Agent lain yang Anda kuasai (boleh pilih lebih dari satu)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="agent_jett" value="Jett">
+                                <label for="agent_jett">Jett</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="agent_raze" value="Raze">
+                                <label for="agent_raze">Raze</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="agent_reyna" value="Reyna">
+                                <label for="agent_reyna">Reyna</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="agent_phoenix" value="Phoenix">
+                                <label for="agent_phoenix">Phoenix</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="agent_sage" value="Sage">
+                                <label for="agent_sage">Sage</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="agent_cypher" value="Cypher">
+                                <label for="agent_cypher">Cypher</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="agent_sova" value="Sova">
+                                <label for="agent_sova">Sova</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="agent_viper" value="Viper">
+                                <label for="agent_viper">Viper</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="agent_brimstone" value="Brimstone">
+                                <label for="agent_brimstone">Brimstone</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="agent_omen" value="Omen">
+                                <label for="agent_omen">Omen</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pertanyaan Tambahan -->
+                <div class="form-section">
+                    <div class="section-title">💭 Pertanyaan Tambahan</div>
+                    
+                    <div class="form-group">
+                        <label>Seberapa sering Anda bermain ranked?</label>
+                        <select id="ranked_frequency" required>
+                            <option value="">-- Pilih Frekuensi --</option>
+                            <option value="Setiap hari">Setiap hari</option>
+                            <option value="3-5x seminggu">3-5 kali seminggu</option>
+                            <option value="1-2x seminggu">1-2 kali seminggu</option>
+                            <option value="Jarang">Jarang (kurang dari 1x seminggu)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Aim style yang Anda gunakan</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="aim_flick" name="aim_style" value="Flick" required>
+                                <label for="aim_flick">⚡ Flick Shots</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="aim_track" name="aim_style" value="Tracking">
+                                <label for="aim_track">🎯 Tracking</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="aim_crosshair" name="aim_style" value="Crosshair">
+                                <label for="aim_crosshair">➕ Crosshair Placement</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">📤 Submit Kuisioner</button>
+            </form>
+
+            <div class="response-count" id="responseCount">
+                Total Responden: <span id="totalResponses">0</span>
+            </div>
+
+            <div class="export-section">
+                <h3 style="margin-bottom: 15px; color: #e65100;">📥 Export Data</h3>
+                <button class="export-btn" onclick="exportToCSV()">Download CSV</button>
+                <button class="export-btn" onclick="exportToJSON()">Download JSON</button>
+                <button class="export-btn" onclick="viewData()">Lihat Data</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Store responses in localStorage
+        let responses = JSON.parse(localStorage.getItem('valorantResponses') || '[]');
+        
+        // Update response count
+        function updateCount() {
+            document.getElementById('totalResponses').textContent = responses.length;
+        }
+        updateCount();
+
+        // Form submission
+        document.getElementById('valorantForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get selected agents
+            const selectedAgents = [];
+            document.querySelectorAll('.checkbox-option input[type="checkbox"]:checked').forEach(cb => {
+                selectedAgents.push(cb.value);
+            });
+
+            // Collect form data
+            const formData = {
+                timestamp: new Date().toISOString(),
+                username: document.getElementById('username').value || 'Anonymous',
+                rank: document.getElementById('rank').value,
+                experience: document.getElementById('experience').value,
+                avg_kills: parseFloat(document.getElementById('avg_kills').value),
+                avg_deaths: parseFloat(document.getElementById('avg_deaths').value),
+                avg_assists: parseFloat(document.getElementById('avg_assists').value),
+                avg_first_bloods: parseFloat(document.getElementById('avg_first_bloods').value),
+                avg_combat_score: parseFloat(document.getElementById('avg_combat_score').value),
+                kd_ratio: (parseFloat(document.getElementById('avg_kills').value) / parseFloat(document.getElementById('avg_deaths').value)).toFixed(2),
+                ka_ratio: ((parseFloat(document.getElementById('avg_kills').value) + parseFloat(document.getElementById('avg_assists').value)) / parseFloat(document.getElementById('avg_deaths').value)).toFixed(2),
+                playstyle_self_assessment: document.querySelector('input[name="playstyle"]:checked').value,
+                preferred_role: document.getElementById('preferred_role').value,
+                position: document.querySelector('input[name="position"]:checked').value,
+                favorite_agent: document.getElementById('favorite_agent').value,
+                other_agents: selectedAgents,
+                ranked_frequency: document.getElementById('ranked_frequency').value,
+                aim_style: document.querySelector('input[name="aim_style"]:checked').value
+            };
+
+            // Save to localStorage
+            responses.push(formData);
+            localStorage.setItem('valorantResponses', JSON.stringify(responses));
+            
+            // Update count
+            updateCount();
+            
+            // Show success message
+            alert('✅ Terima kasih! Data Anda telah tersimpan.\n\nTotal responden: ' + responses.length);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Export to CSV
+        function exportToCSV() {
+            if (responses.length === 0) {
+                alert('Belum ada data untuk di-export!');
+                return;
+            }
+
+            const headers = [
+                'timestamp', 'username', 'rank', 'experience',
+                'avg_kills', 'avg_deaths', 'avg_assists', 'avg_first_bloods', 'avg_combat_score',
+                'kd_ratio', 'ka_ratio', 'playstyle_self_assessment', 'preferred_role',
+                'position', 'favorite_agent', 'other_agents', 'ranked_frequency', 'aim_style'
+            ];
+
+            let csv = headers.join(',') + '\n';
+            
+            responses.forEach(row => {
+                const values = headers.map(header => {
+                    let value = row[header];
+                    if (Array.isArray(value)) {
+                        value = value.join(';');
+                    }
+                    return '"' + (value || '').toString().replace(/"/g, '""') + '"';
+                });
+                csv += values.join(',') + '\n';
+            });
+
+            downloadFile(csv, 'valorant_questionnaire_data.csv', 'text/csv');
+        }
+
+        // Export to JSON
+        function exportToJSON() {
+            if (responses.length === 0) {
+                alert('Belum ada data untuk di-export!');
+                return;
+            }
+
+            const json = JSON.stringify(responses, null, 2);
+            downloadFile(json, 'valorant_questionnaire_data.json', 'application/json');
+        }
+
+        // Download file helper
+        function downloadFile(content, filename, type) {
+            const blob = new Blob([content], { type: type });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            alert('✅ File berhasil didownload: ' + filename);
+        }
+
+        // View data
+        function viewData() {
+            if (responses.length === 0) {
+                alert('Belum ada data tersimpan!');
+                return;
+            }
+
+            const win = window.open('', '_blank');
+            win.document.write('<html><head><title>Data Kuisioner VALORANT</title>');
+            win.document.write('<style>body{font-family:Arial;padding:20px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:8px;text-align:left}th{background:#ff4655;color:white}tr:nth-child(even){background:#f2f2f2}</style>');
+            win.document.write('</head><body>');
+            win.document.write('<h1>Data Kuisioner VALORANT</h1>');
+            win.document.write('<p>Total Responden: ' + responses.length + '</p>');
+            win.document.write('<table>');
+            
+            // Headers
+            win.document.write('<tr>');
+            Object.keys(responses[0]).forEach(key => {
+                win.document.write('<th>' + key + '</th>');
+            });
+            win.document.write('</tr>');
+            
+            // Data
+            responses.forEach(row => {
+                win.document.write('<tr>');
+                Object.values(row).forEach(value => {
+                    win.document.write('<td>' + (Array.isArray(value) ? value.join(', ') : value) + '</td>');
+                });
+                win.document.write('</tr>');
+            });
+            
+            win.document.write('</table></body></html>');
+        }
+    </script>
+</body>
+</html>
